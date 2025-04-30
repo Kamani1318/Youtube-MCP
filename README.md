@@ -30,22 +30,18 @@ This project retrieves YouTube channel analytics data using the YouTube Analytic
 
 ### 3. Python Environment Setup
 
-1. Create and activate a virtual environment:
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows use: venv\Scripts\activate
-   ```
+1. Python Version 3.12.9 needed
 
 2. Install required packages:
    ```bash
-   pip install google-api-python-client google-auth-oauthlib google-auth sqlite3
+   pip install -r recquirements.txt
    ```
 
 ## Running the Application
 
 1. First run (authentication):
    ```bash
-   python your_script_name.py
+   python retrive_data/add_youtube_data.py
    ```
    - This will open a browser window asking you to authenticate
    - Grant permissions to your YouTube channel
@@ -73,25 +69,27 @@ CREATE TABLE youtube_analytics (
 )
 ```
 
-## How It Works
+## MCP Server
 
-1. The script checks for the latest date in your database
-2. It requests YouTube Analytics data from that date to today
-3. New data is inserted into the database, skipping any existing dates
-4. Data is retrieved daily to maintain an up-to-date analytics history
+1. Install uv in your directory
+
+2. Python version 3.12.9 recquired
+
+3. Run script
+```bash
+uv run youtube/main.py
+```
+
 
 ## Important Files
 
-- `client_secret_x.json`: Your OAuth 2.0 client credentials (keep this secure)
-- `token.pickle`: Stores your authentication tokens (do not share)
-- `yt_analytics.db`: SQLite database file with your analytics data
+- `retrive_data/client_secret_x.json`: Your OAuth 2.0 client credentials (keep this secure)
+- `retrive_datatoken.pickle`: Stores your authentication tokens (do not share)
+- `youtube/yt_analytics.db`: SQLite database file with your analytics data
 
 ## Troubleshooting
 
 - If you get authentication errors, delete `token.pickle` and run the script again
+- Get another client_secrets.json file if the API doesn't work after a few days.
 - Ensure your Google Cloud project has the required APIs enabled
 - Make sure your OAuth consent screen is properly configured in Google Cloud Console
-
-## License
-
-[Specify your license here if applicable]
