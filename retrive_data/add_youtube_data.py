@@ -136,9 +136,7 @@ def insert_data(yt_data):
 
 if __name__ == "__main__":
     row = get_latest_date()
-    print(row)
     start_date = row[0]
     today = datetime.now().strftime("%Y-%m-%d")
     response = get_yt_analytics(start_date,today)
-    print(response)
     insert_data(response)
